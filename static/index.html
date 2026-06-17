@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Dashboard</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+  <div class="app-wrapper">
+
+    <!-- Header -->
+    <header class="app-header">
+      <h1 class="app-title">
+        <span class="app-title-icon">&#9925;</span> Weather Dashboard
+      </h1>
+    </header>
+
+    <!-- Search Section -->
+    <main class="main-content">
+      <section class="search-section" aria-label="City search">
+        <form id="search-form" class="search-form" novalidate>
+          <div class="search-row">
+            <label for="city-input" class="sr-only">Enter city name</label>
+            <input
+              type="text"
+              id="city-input"
+              class="search-input"
+              placeholder="Enter city name (e.g. London)"
+              autocomplete="off"
+              autocorrect="off"
+              spellcheck="false"
+              maxlength="100"
+              required
+              aria-required="true"
+              aria-describedby="search-error"
+            />
+            <button type="submit" id="search-btn" class="search-btn">
+              Get Weather
+            </button>
+          </div>
+          <p id="search-error" class="field-error" role="alert" aria-live="polite" hidden></p>
+        </form>
+
+        <!-- Unit Toggle -->
+        <div class="unit-toggle" role="group" aria-label="Temperature unit">
+          <span class="unit-label">Units:</span>
+          <button
+            id="btn-celsius"
+            class="unit-btn active"
+            data-unit="C"
+            aria-pressed="true"
+            type="button"
+          >°C</button>
+          <button
+            id="btn-fahrenheit"
+            class="unit-btn"
+            data-unit="F"
+            aria-pressed="false"
+            type="button"
+          >°F</button>
+        </div>
+      </section>
+
+      <!-- Loading State -->
+      <div id="loading-state" class="loading-state" hidden aria-live="polite" aria-label="Loading weather data">
+        <div class="spinner" aria-hidden="true"></div>
+        <p class="loading-text">Fetching weather data&hellip;</p>
+      </div>
+
+      <!-- Error State -->
+      <div id="error-state" class="error-state" hidden role="alert" aria-live="assertive">
+        <span class="error-icon" aria-hidden="true">&#9888;</span>
+        <p id="error-message" class="error-message"></p>
+        <button id="retry-btn" class="retry-btn" type="button">Try again</button>
+      </div>
+
+      <!-- Results Section -->
+      <section id="results-section" class="results-section" hidden aria-label="Weather results" aria-live="polite">
+        <div class="weather-card">
+
+          <!-- City and Country -->
+          <div class="weather-location">
+            <h2 id="result-city" class="result-city"></h2>
+            <span id="result-country" class="result-country"></span>
+          </div>
+
+          <!-- Condition and Icon -->
+          <div class="weather-main">
+            <div class="weather-main-left">
+              <p id="result-condition" class="result-condition"></p>
+              <p id="result-temp" class="result-temp"></p>
+            </div>
+          </div>
+
+          <!-- Detail Grid -->
+          <div class="weather-details">
+            <div class="detail-card">
+              <span class="detail-label">Feels Like</span>
+              <span id="result-feels-like" class="detail-value"></span>
+            </div>
+            <div class="detail-card">
+              <span class="detail-label">Humidity</span>
+              <span id="result-humidity" class="detail-value"></span>
+            </div>
+            <div class="detail-card">
+              <span class="detail-label">Wind Speed</span>
+              <span id="result-wind" class="detail-value"></span>
+            </div>
+            <div class="detail-card">
+              <span class="detail-label">Visibility</span>
+              <span id="result-visibility" class="detail-value"></span>
+            </div>
+          </div>
+
+          <p id="result-timestamp" class="result-timestamp"></p>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="app-footer">
+      <p>Data provided by <a href="https://openweathermap.org" target="_blank" rel="noopener noreferrer">OpenWeatherMap</a></p>
+    </footer>
+
+  </div>
+
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
